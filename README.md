@@ -1,21 +1,30 @@
 # Project 3: Around The U.S.
 
-### Overview  
+### Overview
 
-* Intro  
-* Figma  
-* Images  
-  
-**Intro**
-  
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
-  
-**Figma**  
-  
-* [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)  
-  
-**Images**  
-  
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-  
-Good luck and have fun!
+- Project Description
+- Techniques and Technology
+- Images
+- Github Link
+
+**Project Description**
+
+The intention behind this project is to create an interactive webpage that users can modify through creating their own public profiles with a name, description and profile image, adding and removing photos, and liking photos shared by other users.
+
+**Techniques and Technology**
+
+This project is meant to showcase a culmination of my understanding of HTML and CSS coding, combining skills like flex containers, grids, and responsive design principles to create a webpage with a variety of subtle tricks that transitions seamlessly between desktop and mobile version layouts.
+
+**Images**
+
+![webpage at 1280](./images/1400-max-w.png)
+
+This screenshot of the webpage shows the grid layout of the customizable user cards in a standard desktop view with a width of 1280px.
+
+![webpage at 320px](./images/480-max-w.png)
+
+This screenshot of the webpage shows the responsive layout adjusted to a viewport of 320px or an average smart phone dislay.
+
+**Github Link**
+
+- [Link to the project on Github](https://github.com/anthonyzisa/se_project_aroundtheus)
