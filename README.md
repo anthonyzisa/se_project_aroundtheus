@@ -27,4 +27,4 @@ This screenshot of the webpage shows the responsive layout adjusted to a viewpor
 
 **Github Link**
 
-- [Link to the project](https://username.github.io/se_project_aroundtheus)
+- [Link to the project](https://anthonyzisa.github.io/se_project_aroundtheus/)
