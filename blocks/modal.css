@@ -44,7 +44,7 @@
   gap: 30px;
 }
 
-.modal__heading {
+.modal__title {
   margin: 0 0 54px;
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-size: 24px;
@@ -90,7 +90,7 @@
     max-height: 322px;
   }
 
-  .modal__heading {
+  .modal__title {
     font-size: 18px;
     line-height: 21.8px;
     margin: 0 0 75px 0;
