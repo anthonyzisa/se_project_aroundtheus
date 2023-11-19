@@ -41,6 +41,13 @@
   border-width: 0;
 }
 
+.card__like-button-active {
+  background: solid url(../images/like-button-solid.svg) center;
+  width: 21px;
+  height: 18px;
+  border-width: 0;
+}
+
 .card__like-button:hover {
   cursor: pointer;
   opacity: 50%;
