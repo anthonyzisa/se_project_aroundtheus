@@ -61,17 +61,23 @@ function getCardView(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
+  const cardLikeButton = cardElement.querySelector(".card__like-button");
+  const cardDeleteButton = cardElement.querySelector(".card__delete-button");
+  const previewImageModal = document.querySelector("#preview-image-modal");
   cardImageEl.src = cardData.link;
   cardTitleEl.textContent = cardData.name;
   cardImageEl.alt = cardData.name;
 
-  // add event listener for like button
-  const cardLikeButton = cardElement.querySelector(".card__like-button");
   cardLikeButton.addEventListener("click", () => {
-    cardLikeButton.classList.toggle(".card__like-button-active");
+    cardLikeButton.classList.toggle("card__like-button_active");
   });
-  //add event listener for delete button
-  // cardEl.remove();
+  cardDeleteButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
+  cardImageEl.addEventListener("click", () => {
+    openPopup(previewImageModal);
+  });
+
   // add event lstener for image popup
   // open popup
   // find image element inside popup
@@ -119,6 +125,7 @@ cardAddButton.addEventListener("click", () => {
 profileEditCloseButton.addEventListener("click", function () {
   closePopup(profileEditModal);
 });
+
 cardAddCloseButton.addEventListener("click", function () {
   closePopup(cardAddModal);
 });
