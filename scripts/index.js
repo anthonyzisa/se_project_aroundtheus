@@ -47,6 +47,8 @@ const cardListEl = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
+const preveiwImageCloseButton = document.querySelector(".preview__image-close");
+
 /*              Functions             */
 
 function closePopup(modal) {
@@ -75,14 +77,17 @@ function getCardView(cardData) {
     cardElement.remove();
   });
   cardImageEl.addEventListener("click", () => {
+    const previewImageEl = previewImageModal.querySelector(".preview__image");
+    const previewTitleEl = previewImageModal.querySelector(".preview__title");
+    previewImageEl.src = cardData.link;
+    previewImageEl.alt = cardData.name;
+    previewTitleEl.textContent = cardData.name;
+
     openPopup(previewImageModal);
   });
-
-  // add event lstener for image popup
-  // open popup
-  // find image element inside popup
-  // replace src with card link
-  // replace alr with card title
+  preveiwImageCloseButton.addEventListener("click", () => {
+    closePopup(previewImageModal);
+  });
   return cardElement;
 }
 
