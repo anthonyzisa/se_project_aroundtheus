@@ -11,16 +11,16 @@
   justify-content: center;
   padding: 0 19px;
   display: none;
-  /*visibility: hidden;
-  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  /* opacity: 0;
   pointer-events: none;
   transition: visibility 0s 0.5s, opacity 0.5s linear;*/
 }
 
 .modal_opened {
-  display: flex;
-  /*visibility: visible;
-  opacity: 1;
+  visibility: visible;
+  /*opacity: 1;
   pointer-events: all;
   transition: visibility 0s, opacity 0.5s linear;*/
 }
@@ -48,6 +48,7 @@
 
 .modal__close:hover {
   cursor: pointer;
+  opacity: 50%;
 }
 
 .modal__form {
@@ -80,6 +81,7 @@
 
 .modal__button:hover {
   cursor: pointer;
+  opacity: 50%;
 }
 
 .modal__input {
@@ -119,6 +121,7 @@
 
 .modal__preview-image-close:hover {
   cursor: pointer;
+  opacity: 50%;
 }
 
 .modal__preview-image-wrapper {

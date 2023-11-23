@@ -30,6 +30,7 @@ const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileEditCloseButton = document.querySelector(
   "#profile-edit-close-button"
 );
+
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 const profileTitleInput = document.querySelector("#profile-title-input");
@@ -48,8 +49,9 @@ const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
 const preveiwImageCloseButton = document.querySelector(
-  ".modal__preview-image-close"
+  "#preview-image-close-button"
 );
+const previewImageModal = document.querySelector("#preview-image-modal");
 
 /*              Functions             */
 
@@ -67,7 +69,6 @@ function getCardView(cardData) {
   const cardTitleEl = cardElement.querySelector(".card__title");
   const cardLikeButton = cardElement.querySelector(".card__like-button");
   const cardDeleteButton = cardElement.querySelector(".card__delete-button");
-  const previewImageModal = document.querySelector("#preview-image-modal");
   cardImageEl.src = cardData.link;
   cardTitleEl.textContent = cardData.name;
   cardImageEl.alt = cardData.name;
@@ -90,9 +91,6 @@ function getCardView(cardData) {
     previewTitleEl.textContent = cardData.name;
 
     openPopup(previewImageModal);
-  });
-  preveiwImageCloseButton.addEventListener("click", () => {
-    closePopup(previewImageModal);
   });
   return cardElement;
 }
@@ -119,7 +117,8 @@ function handleCardAddSubmit(e) {
   });
   renderCard(cardView, cardListEl);
   closePopup(cardAddModal);
-  document.cardView().reset();
+  e.target.title.reset();
+  e.target.link.reset();
 }
 
 /*              Event Listeners             */
@@ -140,6 +139,10 @@ profileEditCloseButton.addEventListener("click", function () {
 
 cardAddCloseButton.addEventListener("click", function () {
   closePopup(cardAddModal);
+});
+
+preveiwImageCloseButton.addEventListener("click", function () {
+  closePopup(previewImageModal);
 });
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
