@@ -23,6 +23,10 @@
   border-top-left-radius: 10px;
 }
 
+.card__image:hover {
+  cursor: pointer;
+}
+
 .card__description {
   display: flex;
   background-color: white;
