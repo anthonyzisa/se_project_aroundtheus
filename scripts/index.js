@@ -109,13 +109,13 @@ function handleProfileEditSubmit(e) {
 }
 function handleCardAddSubmit(e) {
   e.preventDefault();
-  e.target.reset();
   const name = e.target.title.value;
   const link = e.target.link.value;
   const cardView = getCardView({
     name,
     link,
   });
+  e.target.reset();
   renderCard(cardView, cardListEl);
   closePopup(cardAddModal);
 }

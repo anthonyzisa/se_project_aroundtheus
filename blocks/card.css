@@ -70,4 +70,10 @@
   position: absolute;
   top: 18px;
   right: 15px;
+  z-index: 999;
+}
+
+.card__delete-button {
+  cursor: pointer;
+  opacity: 50%;
 }
