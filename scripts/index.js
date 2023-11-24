@@ -109,6 +109,7 @@ function handleProfileEditSubmit(e) {
 }
 function handleCardAddSubmit(e) {
   e.preventDefault();
+  e.target.reset();
   const name = e.target.title.value;
   const link = e.target.link.value;
   const cardView = getCardView({
@@ -117,8 +118,6 @@ function handleCardAddSubmit(e) {
   });
   renderCard(cardView, cardListEl);
   closePopup(cardAddModal);
-  e.target.title.reset();
-  e.target.link.reset();
 }
 
 /*              Event Listeners             */
