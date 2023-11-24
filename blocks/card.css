@@ -73,7 +73,7 @@
   z-index: 999;
 }
 
-.card__delete-button {
+.card__delete-button:hover {
   cursor: pointer;
   opacity: 50%;
 }
