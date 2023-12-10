@@ -83,6 +83,10 @@
   opacity: 50%;
 }
 
+.modal__button_disabled {
+  opacity: 20%;
+}
+
 .modal__input {
   padding: 0 0 13px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 20%);
@@ -154,7 +158,21 @@
     min-width: 238px;
     margin: 10px 0 0;
   }
+}
 
-  .modal__form {
-  }
+.modal__error {
+  font-size: 12px;
+  line-height: 15px;
+  color: red;
+  position: absolute;
+  top: 138px;
+  transition: opacitiy 0.3s;
+}
+
+.modal__error:last-of-type {
+  top: 196px;
+}
+
+.modal__input_type_error {
+  border-bottom-color: red;
 }

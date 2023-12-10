@@ -55,21 +55,32 @@
           type="button"
         ></button>
         <h2 class="modal__title">Edit Profile</h2>
-        <form class="modal__form" id="profile-edit-form">
+        <form class="modal__form" id="profile-edit-form" novalidate>
           <input
             type="text"
             name="title"
             class="modal__input"
             placeholder="Name"
             id="profile-title-input"
+            required
+            minlength="2"
+            maxlength="40"
           />
+          <span class="modal__error" id="profile-title-input-error"></span>
           <input
             type="text"
             name="description"
             class="modal__input"
             placeholder="Description"
             id="profile-description-input"
+            required
+            minlength="2"
+            maxlength="200"
           />
+          <span
+            class="modal__error modal__error:last-of-type"
+            id="profile-description-input-error"
+          ></span>
           <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
@@ -90,6 +101,9 @@
             class="modal__input"
             placeholder="Title"
             id="card-title-input"
+            required
+            minlength="1"
+            maxlength="20"
           />
           <input
             type="text"
@@ -127,5 +141,6 @@
     </template>
 
     <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/validate.js" defer></script>
   </body>
 </html>
