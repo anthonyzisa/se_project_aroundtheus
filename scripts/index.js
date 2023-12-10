@@ -98,7 +98,6 @@ function getCardView(cardData) {
 function renderCard(cardEl, container) {
   container.prepend(cardEl);
 }
-
 /*              Event Handlers             */
 
 function handleProfileEditSubmit(e) {
@@ -142,6 +141,54 @@ cardAddCloseButton.addEventListener("click", function () {
 
 preveiwImageCloseButton.addEventListener("click", function () {
   closePopup(previewImageModal);
+});
+
+profileEditModal.addEventListener("click", (evt) => {
+  if (
+    evt.target.classList.contains("modal") ||
+    evt.target.classList.contains("modal__close")
+  ) {
+    closePopup(profileEditModal);
+  }
+});
+
+cardAddModal.addEventListener("click", (evt) => {
+  if (
+    evt.target.classList.contains("modal") ||
+    evt.target.classList.contains("modal__close")
+  ) {
+    closePopup(cardAddModal);
+  }
+});
+
+previewImageModal.addEventListener("click", (evt) => {
+  if (
+    evt.target.classList.contains("modal") ||
+    evt.target.classList.contains("modal__close")
+  ) {
+    closePopup(previewImageModal);
+  }
+});
+
+document.addEventListener("keydown", function (evt) {
+  const key = evt.key;
+  if (key === "Escape") {
+    closePopup(profileEditModal);
+  }
+});
+
+document.addEventListener("keydown", function (evt) {
+  const key = evt.key;
+  if (key === "Escape") {
+    closePopup(cardAddModal);
+  }
+});
+
+document.addEventListener("keydown", function (evt) {
+  const key = evt.key;
+  if (key === "Escape") {
+    closePopup(previewImageModal);
+  }
 });
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);

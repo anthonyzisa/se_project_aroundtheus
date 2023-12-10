@@ -105,13 +105,19 @@
             minlength="1"
             maxlength="20"
           />
+          <span class="modal__error" id="card-title-input-error"></span>
           <input
-            type="text"
+            type="url"
             name="link"
             class="modal__input"
             placeholder="Image Link"
             id="card-image-input"
+            required
           />
+          <span
+            class="modal__error modal__error:last-of-type"
+            id="card-image-input-error"
+          ></span>
           <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
