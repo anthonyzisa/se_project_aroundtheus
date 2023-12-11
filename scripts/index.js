@@ -57,10 +57,12 @@ const previewImageModal = document.querySelector("#preview-image-modal");
 
 function closePopup(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", closeModalByEscape);
 }
 
 function openPopup(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", closeModalByEscape);
 }
 
 function getCardView(cardData) {
@@ -98,6 +100,7 @@ function getCardView(cardData) {
 function renderCard(cardEl, container) {
   container.prepend(cardEl);
 }
+
 /*              Event Handlers             */
 
 function handleProfileEditSubmit(e) {
@@ -119,6 +122,22 @@ function handleCardAddSubmit(e) {
   closePopup(cardAddModal);
 }
 
+function closeModalOnRemoteClick(evt) {
+  if (
+    evt.target === evt.currentTarget ||
+    evt.target.classList.contains("modal__close")
+  ) {
+    closePopup(evt.target);
+  }
+}
+
+function closeModalByEscape(event) {
+  if (evt.key === "Escape") {
+    const openedModal = document.querySelector(".modal__opened");
+    closePopup(openedModal);
+  }
+}
+
 /*              Event Listeners             */
 
 profileEditButton.addEventListener("click", () => {
@@ -134,7 +153,6 @@ cardAddButton.addEventListener("click", () => {
 profileEditCloseButton.addEventListener("click", function () {
   closePopup(profileEditModal);
 });
-
 cardAddCloseButton.addEventListener("click", function () {
   closePopup(cardAddModal);
 });
@@ -143,34 +161,11 @@ preveiwImageCloseButton.addEventListener("click", function () {
   closePopup(previewImageModal);
 });
 
-profileEditModal.addEventListener("click", (evt) => {
-  if (
-    evt.target.classList.contains("modal") ||
-    evt.target.classList.contains("modal__close")
-  ) {
-    closePopup(profileEditModal);
-  }
-});
+profileEditModal.addEventListener("mousedown", closeModalOnRemoteClick);
+cardAddModal.addEventListener("mousedown", closeModalOnRemoteClick);
+previewImageModal.addEventListener("mousedown", closeModalOnRemoteClick);
 
-cardAddModal.addEventListener("click", (evt) => {
-  if (
-    evt.target.classList.contains("modal") ||
-    evt.target.classList.contains("modal__close")
-  ) {
-    closePopup(cardAddModal);
-  }
-});
-
-previewImageModal.addEventListener("click", (evt) => {
-  if (
-    evt.target.classList.contains("modal") ||
-    evt.target.classList.contains("modal__close")
-  ) {
-    closePopup(previewImageModal);
-  }
-});
-
-document.addEventListener("keydown", function (evt) {
+/* document.addEventListener("keydown", function (evt) {
   const key = evt.key;
   if (key === "Escape") {
     closePopup(profileEditModal);
@@ -189,7 +184,7 @@ document.addEventListener("keydown", function (evt) {
   if (key === "Escape") {
     closePopup(previewImageModal);
   }
-});
+}); */
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 cardAddForm.addEventListener("submit", handleCardAddSubmit);

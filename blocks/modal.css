@@ -78,7 +78,7 @@
   border-radius: 2px;
 }
 
-.modal__button:hover {
+.modal__button:hover:not(:disabled) {
   cursor: pointer;
   opacity: 50%;
 }
