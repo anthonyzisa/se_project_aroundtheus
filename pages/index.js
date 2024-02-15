@@ -139,7 +139,7 @@ function handleCardAddSubmit(e) {
   e.preventDefault();
   const name = e.target.title.value;
   const link = e.target.link.value;
-  const cardView = getCardView({
+  const cardView = card({
     name,
     link,
   });
@@ -214,6 +214,22 @@ initialCards.forEach(function (cardData) {
   renderCard(card.getView(), cardListEl);
 });
 
-const editFormValidator = new formValidator(settings, editForm);
-const addFormValidator = new formValidator(settings, addForm);
+//Unsure of how to impliment this code below into code above.
+/*const createCard = (cardObject) => {
+  const card = new Card(...);
+  return card.getView();
+ } */
+
+const settings = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+const editFormValidator = new formValidator(settings);
+const addFormValidator = new formValidator(settings);
 editFormValidator.enableValidation();
+addFormValidator.enableValidation();

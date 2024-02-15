@@ -2,6 +2,9 @@ const previewImageModal = document.querySelector("#preview-image-modal");
 const previewImageEl = previewImageModal.querySelector(".modal__preview-image");
 const previewTitleEl = previewImageModal.querySelector(".modal__preview-title");
 
+//If i remove the popup functions, _handlePreviewImage() fails.
+//How do i work around this?
+
 function closePopup(modal) {
   modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", closeModalByEscape);
@@ -28,33 +31,26 @@ class Card {
   }
 
   _setEventListeners() {
-    this._element
-      .querySelector(".card__like-button")
-      .addEventListener("click", () => this._handleLikeIcon());
-    this._element
-      .querySelector(".card__delete-button")
-      .addEventListener("click", () => this._handleDeleteCard());
-    this._element
-      .querySelector(".card__image")
-      .addEventListener("click", () => this._handlePreviewImage());
+    this._likeButton.addEventListener("click", this._handleLikeIcon);
+    this._deleteButton.addEventListener("click", this._handleDeleteCard);
+    this._previewImage.addEventListener("click", this._handlePreviewImage);
   }
 
-  _handleLikeIcon() {
-    this._element
-      .querySelector(".card__like-button")
-      .classList.toggle("card__like-button_active");
-  }
+  _handleLikeIcon = () => {
+    this._likeButton.classList.toggle("card__like-button_active");
+  };
 
-  _handleDeleteCard() {
+  _handleDeleteCard = () => {
     this._element.remove();
-  }
+    this._element = null;
+  };
 
-  _handlePreviewImage() {
+  _handlePreviewImage = () => {
     previewImageEl.src = this._link;
     previewImageEl.alt = this._name;
     previewTitleEl.textContent = this._name;
     openPopup(previewImageModal);
-  }
+  };
 
   _getTemplate() {
     const cardElement = document
@@ -67,10 +63,13 @@ class Card {
 
   getView() {
     this._element = this._getTemplate();
-    this._element.querySelector(
-      ".card__image"
-    ).style.backgroundImage = `url(${this._link})`;
-    this._element.querySelector(".card__title").textContent = this._name;
+    this._likeButton = this._element.querySelector(".card__like-button");
+    this._deleteButton = this._element.querySelector(".card__delete-button");
+    this._previewImage = this._element.querySelector(".card__image");
+    this._cardTitle = this._element.querySelector(".card__title");
+    this._previewImage.src = this._link;
+    this._previewImage.alt = this._name;
+    this._cardTitle.textContent = this._name;
     this._setEventListeners();
 
     return this._element;
