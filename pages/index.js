@@ -1,5 +1,6 @@
 import Card from "../components/card.js";
-import formValidator from "../components/formValidator.js";
+import FormValidator from "../components/formValidator.js";
+import { closePopup, openPopup, closeModalByEscape } from "../utils/utils.js";
 
 const initialCards = [
   {
@@ -67,24 +68,13 @@ const validationSettings = {
   errorClass: "modal__error_visible",
 };
 
+const editFormValidator = new FormValidator(
+  validationSettings,
+  profileEditForm
+);
+const addFormValidator = new FormValidator(validationSettings, cardAddForm);
+
 /*              Functions             */
-
-function closePopup(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", closeModalByEscape);
-}
-
-function openPopup(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener("keydown", closeModalByEscape);
-}
-
-function closeModalByEscape(evt) {
-  if (evt.key === "Escape") {
-    const modalOpened = document.querySelector(".modal_opened");
-    closePopup(modalOpened);
-  }
-}
 
 /*function getCardView(cardData) {
   //const cardElement = cardTemplate.cloneNode(true);
@@ -121,14 +111,6 @@ function renderCard(cardEl, container) {
 
 /*              Event Handlers             */
 
-//const handleLikeIcon = (evt) => {
-//  evt.target.classList.toggle("card__like-button_active");
-//};
-
-//const handleDeleteCard = (evt) => {
-//  evt.target.closest(".card").remove();
-//};
-
 function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
@@ -139,7 +121,7 @@ function handleCardAddSubmit(e) {
   e.preventDefault();
   const name = e.target.title.value;
   const link = e.target.link.value;
-  const cardView = card({
+  const cardView = new Card({
     name,
     link,
   });
@@ -183,28 +165,7 @@ preveiwImageCloseButton.addEventListener("click", function () {
 profileEditModal.addEventListener("mousedown", closeModalOnRemoteClick);
 cardAddModal.addEventListener("mousedown", closeModalOnRemoteClick);
 previewImageModal.addEventListener("mousedown", closeModalOnRemoteClick);
-/*
-document.addEventListener("keydown", function (evt) {
-  const key = evt.key;
-  if (key === "Escape") {
-    closePopup(profileEditModal);
-  }
-});
 
-document.addEventListener("keydown", function (evt) {
-  const key = evt.key;
-  if (key === "Escape") {
-    closePopup(cardAddModal);
-  }
-});
-
-document.addEventListener("keydown", function (evt) {
-  const key = evt.key;
-  if (key === "Escape") {
-    closePopup(previewImageModal);
-  }
-});
-*/
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 cardAddForm.addEventListener("submit", handleCardAddSubmit);
 
@@ -229,7 +190,5 @@ const settings = {
   errorClass: "modal__error_visible",
 };
 
-const editFormValidator = new formValidator(settings);
-const addFormValidator = new formValidator(settings);
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();

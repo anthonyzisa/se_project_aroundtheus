@@ -1,4 +1,4 @@
-class formValidator {
+class FormValidator {
   constructor(settings, formEl) {
     this._inputSelector = settings.inputSelector;
     this._submitButtonSelector = settings.submitButtonSelector;
@@ -9,33 +9,29 @@ class formValidator {
     this._formEl = formEl;
   }
 
-  _showInputError() {
-    const errorMessageEl = this._formEl.querySelector(
-      `#${this._inputEl.id}-error`
-    );
-    this._inputEl.classList.add(this._inputErrorClass);
-    errorMessageEl.textContent = this._inputEl.validationMessage;
-    errorMessageEl.classList.add(this._errorClass);
+  _showInputError(inputEl) {
+    this._errorMessageEl = this._formEl.querySelector(`#${inputEl.id}-error`);
+    inputEl.classList.add(this._inputErrorClass);
+    this._errorMessageEl.textContent = inputEl.validationMessage;
+    this._errorMessageEl.classList.add(this._errorClass);
   }
 
-  _hideInputError() {
-    const errorMessageEl = this._formEl.querySelector(
-      `#${this._inputEl.id}-error`
-    );
-    this._inputEl.classList.remove(this._inputErrorClass);
-    errorMessageEl.textContent = "";
-    errorMessageEl.classList.remove(this._errorClass);
+  _hideInputError(inputEl) {
+    this._errorMessageEl = this._formEl.querySelector(`#${inputEl.id}-error`);
+    inputEl.classList.remove(this._inputErrorClass);
+    this._errorMessageEl.textContent = "";
+    this._errorMessageEl.classList.remove(this._errorClass);
   }
 
-  _checkInputValidity(options) {
-    if (!this._inputEl.validity.valid) {
-      return showInputError(this._formEl, this._inputEl, options);
+  _checkInputValidity(inputEl, options) {
+    if (!inputEl.validity.valid) {
+      return showInputError(this._formEl, inputEl, options);
     }
-    hideInputError(this._formEl, this._inputEl, options);
+    hideInputError(this._formEl, inputEl, options);
   }
 
-  _hasInvalidInput(inputEls) {
-    return !inputEls.every((inputEl) => inputEl.validity.valid);
+  _hasInvalidInput() {
+    return !this._inputEls.every((inputEl) => inputEl.validity.valid);
   }
 
   _toggleButtonState() {
@@ -50,9 +46,7 @@ class formValidator {
 
   _setEventListeners() {
     this._inputEls = [...this._formEl.querySelectorAll(this._inputSelector)];
-    this._submitButton = this._formEl.querySelector(
-      options.this._submitButtonSelector
-    );
+    this._submitButton = this._formEl.querySelector(this._submitButtonSelector);
     inputEls.forEach((inputEl) => {
       inputEl.addEventListener("input", (e) => {
         checkInputValidity(this._formEl, inputEl, options);
@@ -65,8 +59,8 @@ class formValidator {
     this._formEl.addEventListener("submit", (e) => {
       e.preventDefault();
     });
-
-    setEventListeners(formEl, options);
+    //setEventListeners is undefined and i dont know why?
+    setEventListeners(this._formEl, options);
   }
 }
 
@@ -79,4 +73,4 @@ const settings = {
   errorClass: "modal__error_visible",
 };
 
-export default formValidator;
+export default FormValidator;
