@@ -25,9 +25,9 @@ class FormValidator {
 
   _checkInputValidity(inputEl, options) {
     if (!inputEl.validity.valid) {
-      return showInputError(this._formEl, inputEl, options);
+      return this._showInputError(inputEl);
     }
-    hideInputError(this._formEl, inputEl, options);
+    this._hideInputError(inputEl);
   }
 
   _hasInvalidInput() {
@@ -35,7 +35,7 @@ class FormValidator {
   }
 
   _toggleButtonState() {
-    if (hasInvalidInput(this._inputEls)) {
+    if (this._hasInvalidInput(this._inputEls)) {
       this._submitButton.classList.add(this._inactiveButtonClass);
       this._submitButton.disabled = true;
       return;
@@ -47,10 +47,10 @@ class FormValidator {
   _setEventListeners() {
     this._inputEls = [...this._formEl.querySelectorAll(this._inputSelector)];
     this._submitButton = this._formEl.querySelector(this._submitButtonSelector);
-    inputEls.forEach((inputEl) => {
+    this._inputEls.forEach((inputEl) => {
       inputEl.addEventListener("input", (e) => {
-        checkInputValidity(this._formEl, inputEl, options);
-        toggleButtonState(inputEls, submitButton, options);
+        this._checkInputValidity(inputEl);
+        this._toggleButtonState();
       });
     });
   }
@@ -59,8 +59,7 @@ class FormValidator {
     this._formEl.addEventListener("submit", (e) => {
       e.preventDefault();
     });
-    //setEventListeners is undefined and i dont know why?
-    setEventListeners(this._formEl, options);
+    this._setEventListeners(this._formEl);
   }
 }
 

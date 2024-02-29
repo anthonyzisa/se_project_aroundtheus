@@ -117,11 +117,12 @@ function handleProfileEditSubmit(e) {
   profileDescription.textContent = profileDescriptionInput.value;
   closePopup(profileEditModal);
 }
+
 function handleCardAddSubmit(e) {
   e.preventDefault();
   const name = e.target.title.value;
   const link = e.target.link.value;
-  const cardView = new Card({
+  const cardView = createCard({
     name,
     link,
   });
@@ -169,17 +170,15 @@ previewImageModal.addEventListener("mousedown", closeModalOnRemoteClick);
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 cardAddForm.addEventListener("submit", handleCardAddSubmit);
 
-initialCards.forEach(function (cardData) {
-  // const cardView = getCardView(cardData);
+const createCard = (cardData) => {
   const card = new Card(cardData, cardSelector);
-  renderCard(card.getView(), cardListEl);
-});
-
-//Unsure of how to impliment this code below into code above.
-/*const createCard = (cardObject) => {
-  const card = new Card(...);
   return card.getView();
- } */
+};
+
+initialCards.forEach(function (cardData) {
+  const card = createCard(cardData);
+  renderCard(card, cardListEl);
+});
 
 const settings = {
   formSelector: ".modal__form",
